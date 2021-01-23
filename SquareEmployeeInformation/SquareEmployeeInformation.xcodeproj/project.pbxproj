@@ -15,6 +15,11 @@
 		905436AB25BCAFC300057930 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 905436A925BCAFC300057930 /* LaunchScreen.storyboard */; };
 		905436B625BCAFC300057930 /* SquareEmployeeInformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905436B525BCAFC300057930 /* SquareEmployeeInformationTests.swift */; };
 		905436C125BCAFC300057930 /* SquareEmployeeInformationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905436C025BCAFC300057930 /* SquareEmployeeInformationUITests.swift */; };
+		905436DB25BCB0E300057930 /* NetworkingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905436DA25BCB0E300057930 /* NetworkingProtocols.swift */; };
+		905436E425BCB2D700057930 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905436E325BCB2D700057930 /* NetworkManager.swift */; };
+		905436E925BCB2FE00057930 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905436E825BCB2FE00057930 /* Logging.swift */; };
+		905436F225BCB38100057930 /* EmployeesNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905436F125BCB38100057930 /* EmployeesNetworkManager.swift */; };
+		905436F725BCB4A700057930 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905436F625BCB4A700057930 /* Employee.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		905436BC25BCAFC300057930 /* SquareEmployeeInformationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SquareEmployeeInformationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		905436C025BCAFC300057930 /* SquareEmployeeInformationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareEmployeeInformationUITests.swift; sourceTree = "<group>"; };
 		905436C225BCAFC300057930 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		905436DA25BCB0E300057930 /* NetworkingProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProtocols.swift; sourceTree = "<group>"; };
+		905436E325BCB2D700057930 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		905436E825BCB2FE00057930 /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		905436F125BCB38100057930 /* EmployeesNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesNetworkManager.swift; sourceTree = "<group>"; };
+		905436F625BCB4A700057930 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +109,9 @@
 		9054369D25BCAFC100057930 /* SquareEmployeeInformation */ = {
 			isa = PBXGroup;
 			children = (
-				9054369E25BCAFC100057930 /* AppDelegate.swift */,
-				905436A025BCAFC100057930 /* SceneDelegate.swift */,
-				905436A225BCAFC100057930 /* ViewController.swift */,
-				905436A425BCAFC100057930 /* Main.storyboard */,
-				905436A725BCAFC300057930 /* Assets.xcassets */,
-				905436A925BCAFC300057930 /* LaunchScreen.storyboard */,
-				905436AC25BCAFC300057930 /* Info.plist */,
+				905436FE25BCB4AE00057930 /* Models */,
+				905436DF25BCB29100057930 /* Networking */,
+				905436D325BCB07A00057930 /* Resources */,
 			);
 			path = SquareEmployeeInformation;
 			sourceTree = "<group>";
@@ -126,6 +132,47 @@
 				905436C225BCAFC300057930 /* Info.plist */,
 			);
 			path = SquareEmployeeInformationUITests;
+			sourceTree = "<group>";
+		};
+		905436D325BCB07A00057930 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				905436ED25BCB30300057930 /* Logging */,
+				9054369E25BCAFC100057930 /* AppDelegate.swift */,
+				905436A025BCAFC100057930 /* SceneDelegate.swift */,
+				905436A225BCAFC100057930 /* ViewController.swift */,
+				905436A425BCAFC100057930 /* Main.storyboard */,
+				905436A725BCAFC300057930 /* Assets.xcassets */,
+				905436A925BCAFC300057930 /* LaunchScreen.storyboard */,
+				905436AC25BCAFC300057930 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		905436DF25BCB29100057930 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				905436DA25BCB0E300057930 /* NetworkingProtocols.swift */,
+				905436E325BCB2D700057930 /* NetworkManager.swift */,
+				905436F125BCB38100057930 /* EmployeesNetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		905436ED25BCB30300057930 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				905436E825BCB2FE00057930 /* Logging.swift */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
+		905436FE25BCB4AE00057930 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				905436F625BCB4A700057930 /* Employee.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +306,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				905436A325BCAFC100057930 /* ViewController.swift in Sources */,
+				905436F725BCB4A700057930 /* Employee.swift in Sources */,
+				905436E925BCB2FE00057930 /* Logging.swift in Sources */,
+				905436DB25BCB0E300057930 /* NetworkingProtocols.swift in Sources */,
+				905436E425BCB2D700057930 /* NetworkManager.swift in Sources */,
+				905436F225BCB38100057930 /* EmployeesNetworkManager.swift in Sources */,
 				9054369F25BCAFC100057930 /* AppDelegate.swift in Sources */,
 				905436A125BCAFC100057930 /* SceneDelegate.swift in Sources */,
 			);
@@ -437,7 +489,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SquareEmployeeInformation/Info.plist;
+				INFOPLIST_FILE = SquareEmployeeInformation/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,7 +507,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SquareEmployeeInformation/Info.plist;
+				INFOPLIST_FILE = SquareEmployeeInformation/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
