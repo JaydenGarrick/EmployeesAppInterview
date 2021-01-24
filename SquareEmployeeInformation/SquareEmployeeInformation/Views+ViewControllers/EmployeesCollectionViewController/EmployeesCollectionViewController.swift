@@ -43,6 +43,9 @@ final class EmployeesCollectionViewController: UICollectionViewController {
         // NavBar
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.title = Constants.title
+        #if DEBUG
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        #endif
         
         // Presenter
         presenter = EmployeePresenter(self)
@@ -103,9 +106,9 @@ extension EmployeesCollectionViewController: EmployeesResultable {
     
     func navigateToDetailViewController(with viewModel: EmployeeDetailViewModel) {
         /*
-        Ideally I wouldn't be using storyboards, but to save time I'm doing it here
+        Ideally I wouldn't be using storyboards, but to save time I'm doing it here.
         I could use storyboard segue's, however I don't like that pattern so I'm
-        instantiating here
+        instantiating the VC here
         */
         guard let detailViewController = UIStoryboard(name: "Main", bundle: nil)
                 .instantiateViewController(identifier: Constants.detailViewController)

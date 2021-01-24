@@ -13,7 +13,7 @@ final class EmployeePresenter {
     let networkManager: EmployeesFetchable
     let logger: Loggable
     let imageManager: ImageFetchable
-    let transitionManager: CellTransitionManager = CellTransitionManager()
+    let urlHandler: URLHandlerable
     
     // Source of Truth
     var employees: [Employee] = []
@@ -30,15 +30,17 @@ final class EmployeePresenter {
         _ view: EmployeesResultable,
         networkManager: EmployeesFetchable = EmployeesNetworkManager(),
         logger: Loggable = Logger(),
-        imageManager: ImageFetchable = ImageManager()
+        imageManager: ImageFetchable = ImageManager(),
+        urlHandler: URLHandlerable = UIApplication.shared
     ) {
         self.view = view
         self.networkManager = networkManager
         self.logger = logger
         self.imageManager = imageManager
+        self.urlHandler = urlHandler
     }
     
-    // CollectionView
+    // MARK: - CollectionView Decorations
     func cellForRowAt(_ indexPath: IndexPath,
                       inside collectionView: UICollectionView) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmployeesCollectionViewController.Constants.cellIdentifier,
@@ -64,6 +66,7 @@ final class EmployeePresenter {
             // Typically I wouldn't force unwrap here, 
             cell.setImage(UIImage(systemName: "photo.fill")!)
         }
+        cell.delegate = self
         return cell
     }
     
@@ -86,6 +89,7 @@ final class EmployeePresenter {
         }
     }
     
+    // MARK: - Actions
     func didSelectItem(at indexPath: IndexPath,
                        inside collectionView: UICollectionView) {
         var image = UIImage(systemName: "photo.fill")!
@@ -98,21 +102,62 @@ final class EmployeePresenter {
         view.navigateToDetailViewController(with: viewModel)
     }
     
-    // MARK: - Actions
+    func resetEndpointTo(_ type: URLManager.URLResponseType) {
+        switch type {
+        case .good:
+            logger.logEvent("Updating backend to be the good response")
+            URLManager.shared.updateURLTo(type: .good)
+        case .empty:
+            logger.logEvent("Updating backend to be the empty response")
+            URLManager.shared.updateURLTo(type: .empty)
+        case .malformedJSON:
+            logger.logEvent("Updating backend to be the malformed response")
+            URLManager.shared.updateURLTo(type: .malformedJSON)
+        }
+    }
+    
     func fetchEmployees() {
+        employees = []
         networkManager.fetchEmployees { [weak self] (result) in
             switch result {
             case .success(let employees):
                 self?.employees = employees
                 if employees.isEmpty {
                     self?.view.presentError("Employees came back empty...")
+                    self?.view.reload()
                 } else {
                     self?.view.reload()
                 }
             case .failure(let error):
                 self?.view.presentError("Error Retrieving Employees: \(error.localizedDescription)")
+                self?.view.reload()
             }
         }
     }
     
+}
+
+// MARK: - EmployeeCollectionViewCellDelegate
+extension EmployeePresenter: EmployeeCollectionViewCellDelegate {
+    func emailButtonTapped(with email: String) {
+        logger.logEvent("Attempting to open email app for \(email)")
+        if let url = URL(string: "mailto://\(email)"), urlHandler.canOpenURL(url) {
+            urlHandler.open(url)
+        } else {
+            view.presentError("Can't send email to \(email) on this device")
+        }
+    }
+    
+    func phoneNumberButtonTapped(with number: String?) {
+        guard let number = number else {
+            logger.logEvent("No number associated with employee")
+            return
+        }
+        logger.logEvent("Attempting to call \(number)")
+        if let url = URL(string: "tel://\(number)"), urlHandler.canOpenURL(url) {
+            urlHandler.open(url)
+        } else {
+            view.presentError("Can't make call to \(number) on this device")
+        }
+    }
 }

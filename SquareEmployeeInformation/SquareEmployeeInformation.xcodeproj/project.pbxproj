@@ -24,12 +24,13 @@
 		9054371B25BCCBAC00057930 /* EmployeeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054371A25BCCBAC00057930 /* EmployeeCollectionViewCell.swift */; };
 		9054372425BCCBDC00057930 /* EmployeeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9054372325BCCBDC00057930 /* EmployeeCollectionViewCell.xib */; };
 		9054372925BCD99D00057930 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054372825BCD99D00057930 /* ImageManager.swift */; };
-		9054372E25BCE9F900057930 /* CellTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054372D25BCE9F900057930 /* CellTransitionManager.swift */; };
 		9054373B25BCEB7D00057930 /* EmployeeCollectionViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9054373A25BCEB7D00057930 /* EmployeeCollectionViewHeader.xib */; };
 		9054374025BCEB9200057930 /* EmployeeCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054373F25BCEB9200057930 /* EmployeeCollectionViewHeader.swift */; };
 		9054375825BCF67400057930 /* EmployeeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054375725BCF67400057930 /* EmployeeDetailViewController.swift */; };
 		9054376D25BCF91E00057930 /* EmployeeDetailViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054376C25BCF91E00057930 /* EmployeeDetailViewPresenter.swift */; };
 		9054377525BD036F00057930 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054377425BD036F00057930 /* String+Extension.swift */; };
+		9054378125BD06A500057930 /* URLOpenableProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054378025BD06A500057930 /* URLOpenableProtocols.swift */; };
+		9054379525BD104E00057930 /* EmployeeCollectionViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054379425BD104E00057930 /* EmployeeCollectionViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,12 +74,13 @@
 		9054371A25BCCBAC00057930 /* EmployeeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCollectionViewCell.swift; sourceTree = "<group>"; };
 		9054372325BCCBDC00057930 /* EmployeeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeeCollectionViewCell.xib; sourceTree = "<group>"; };
 		9054372825BCD99D00057930 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
-		9054372D25BCE9F900057930 /* CellTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTransitionManager.swift; sourceTree = "<group>"; };
 		9054373A25BCEB7D00057930 /* EmployeeCollectionViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeeCollectionViewHeader.xib; sourceTree = "<group>"; };
 		9054373F25BCEB9200057930 /* EmployeeCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCollectionViewHeader.swift; sourceTree = "<group>"; };
 		9054375725BCF67400057930 /* EmployeeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDetailViewController.swift; sourceTree = "<group>"; };
 		9054376C25BCF91E00057930 /* EmployeeDetailViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDetailViewPresenter.swift; sourceTree = "<group>"; };
 		9054377425BD036F00057930 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		9054378025BD06A500057930 /* URLOpenableProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLOpenableProtocols.swift; sourceTree = "<group>"; };
+		9054379425BD104E00057930 /* EmployeeCollectionViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeCollectionViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				9054377C25BD037A00057930 /* Helpers */,
-				9054373225BCEB2D00057930 /* CustomTransition */,
 				905436ED25BCB30300057930 /* Logging */,
 				9054369E25BCAFC100057930 /* AppDelegate.swift */,
 				905436A025BCAFC100057930 /* SceneDelegate.swift */,
@@ -226,14 +227,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		9054373225BCEB2D00057930 /* CustomTransition */ = {
-			isa = PBXGroup;
-			children = (
-				9054372D25BCE9F900057930 /* CellTransitionManager.swift */,
-			);
-			path = CustomTransition;
-			sourceTree = "<group>";
-		};
 		9054373625BCEB6800057930 /* EmployeeCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				9054377425BD036F00057930 /* String+Extension.swift */,
+				9054379425BD104E00057930 /* EmployeeCollectionViewController+Extension.swift */,
+				9054378025BD06A500057930 /* URLOpenableProtocols.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -403,7 +398,6 @@
 			files = (
 				9054377525BD036F00057930 /* String+Extension.swift in Sources */,
 				9054376D25BCF91E00057930 /* EmployeeDetailViewPresenter.swift in Sources */,
-				9054372E25BCE9F900057930 /* CellTransitionManager.swift in Sources */,
 				9054371B25BCCBAC00057930 /* EmployeeCollectionViewCell.swift in Sources */,
 				905436A325BCAFC100057930 /* EmployeesCollectionViewController.swift in Sources */,
 				905436F725BCB4A700057930 /* Employee.swift in Sources */,
@@ -411,6 +405,8 @@
 				9054375825BCF67400057930 /* EmployeeDetailViewController.swift in Sources */,
 				9054371425BCC99700057930 /* EmployeePresenter.swift in Sources */,
 				905436DB25BCB0E300057930 /* NetworkingProtocols.swift in Sources */,
+				9054378125BD06A500057930 /* URLOpenableProtocols.swift in Sources */,
+				9054379525BD104E00057930 /* EmployeeCollectionViewController+Extension.swift in Sources */,
 				905436E425BCB2D700057930 /* NetworkManager.swift in Sources */,
 				905436F225BCB38100057930 /* EmployeesNetworkManager.swift in Sources */,
 				9054369F25BCAFC100057930 /* AppDelegate.swift in Sources */,
@@ -593,6 +589,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SquareEmployeeInformation/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -611,6 +608,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SquareEmployeeInformation/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -7,6 +7,33 @@
 
 import Foundation
 
+/*
+ I am a sucker for dependency injection, so singletons aren't my favorite
+ I am adding this just as a simple debugging tool to switch between the given
+ URLs and made it a singleton to keep this feature simple
+ */
+class URLManager {
+    static let shared = URLManager() ; private init() {}
+    var url = "https://s3.amazonaws.com/sq-mobile-interview/employees.json"
+    
+    enum URLResponseType {
+        case good
+        case empty
+        case malformedJSON
+    }
+    
+    func updateURLTo(type: URLResponseType) {
+        switch type {
+        case .good:
+            url = "https://s3.amazonaws.com/sq-mobile-interview/employees.json"
+        case .empty:
+            url = "https://s3.amazonaws.com/sq-mobile-interview/employees_empty.json"
+        case .malformedJSON:
+            url = "https://s3.amazonaws.com/sq-mobile-interview/employees_empty.json"
+        }
+    }
+}
+
 typealias EmployeesBackendResponse = (Result<[Employee], EmployeesNetworkError>) -> Void
 
 enum EmployeesNetworkError: Error {
@@ -19,31 +46,24 @@ protocol EmployeesFetchable {
 }
 
 class EmployeesNetworkManager: EmployeesFetchable {
-    
-    enum Constants {
-        static let baseURL = "https://s3.amazonaws.com/sq-mobile-interview/employees.json"
-//        static let baseURL = "https://s3.amazonaws.com/sq-mobile-interview/employees_empty.json"
-//        static let baseURL = "https://s3.amazonaws.com/sq-mobile-interview/employees_malformed.json"
-
-    }
         
     var networkClient: NetworkRequestRetrievable
     var logger: Loggable
     
     init(
-        _ networkClient: NetworkRequestRetrievable = NetworkManager(),
-        _ logger: Loggable = Logger()
+        networkClient: NetworkRequestRetrievable = NetworkManager(),
+        logger: Loggable = Logger()
     ) {
         self.networkClient = networkClient
         self.logger = logger
     }
     
     func fetchEmployees(completion: @escaping EmployeesBackendResponse) {
-        guard let url = URL(string: Constants.baseURL) else {
+        let urlString = URLManager.shared.url
+        guard let url = URL(string: urlString) else {
             completion(.failure(.badURL))
             return
         }
-        
         logger.logEvent("🛰 Making request to \(url.absoluteString)")
         networkClient.jsonRequest(
             url: url,

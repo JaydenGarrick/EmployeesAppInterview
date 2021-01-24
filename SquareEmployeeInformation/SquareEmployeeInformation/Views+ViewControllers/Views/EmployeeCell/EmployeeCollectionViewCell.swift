@@ -55,4 +55,11 @@ final class EmployeeCollectionViewCell: UICollectionViewCell {
     @IBAction func phoneNumberButtonTapped(_ sender: Any) {
         delegate?.phoneNumberButtonTapped(with: employee.phoneNumber)
     }
+    
+    // MARK: - CellReuse
+    override func prepareForReuse() {
+        employeeImageView.image = UIImage(systemName: "photo.fill")
+        super.prepareForReuse()
+    }
+    
 }
