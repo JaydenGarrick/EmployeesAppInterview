@@ -16,6 +16,19 @@ enum EmployeeType: String, Codable {
     case partTime
     case contractor
     case unknown
+    
+    var description: String {
+        switch self {
+        case .fullTime:
+            return "FT"
+        case .partTime:
+            return "PT"
+        case .contractor:
+            return "C"
+        case .unknown:
+            return "Unknown Employee Type"
+        }
+    }
 }
 
 struct Employee: Codable {
@@ -46,7 +59,7 @@ struct Employee: Codable {
         uuid = try values.decode(UUID.self, forKey: .uuid)
         fullName = try values.decode(String.self, forKey: .fullName)
         phoneNumber = try values.decode(String?.self, forKey: .phoneNumber)
-        emailAddress = try values.decode(String.self, forKey: .phoneNumber)
+        emailAddress = try values.decode(String.self, forKey: .emailAddress)
         biography = try values.decode(String?.self, forKey: .biography)
         smallPhotoURL = try values.decode(String?.self, forKey: .smallPhotoURL)
         largePhotoURL = try values.decode(String?.self, forKey: .largePhotoURL)

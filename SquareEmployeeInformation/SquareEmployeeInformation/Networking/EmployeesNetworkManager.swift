@@ -22,6 +22,9 @@ class EmployeesNetworkManager: EmployeesFetchable {
     
     enum Constants {
         static let baseURL = "https://s3.amazonaws.com/sq-mobile-interview/employees.json"
+//        static let baseURL = "https://s3.amazonaws.com/sq-mobile-interview/employees_empty.json"
+//        static let baseURL = "https://s3.amazonaws.com/sq-mobile-interview/employees_malformed.json"
+
     }
         
     var networkClient: NetworkRequestRetrievable
