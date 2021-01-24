@@ -31,6 +31,7 @@
 		9054377525BD036F00057930 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054377425BD036F00057930 /* String+Extension.swift */; };
 		9054378125BD06A500057930 /* URLOpenableProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054378025BD06A500057930 /* URLOpenableProtocols.swift */; };
 		9054379525BD104E00057930 /* EmployeeCollectionViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054379425BD104E00057930 /* EmployeeCollectionViewController+Extension.swift */; };
+		9054379A25BD11DE00057930 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9054379925BD11DE00057930 /* URLManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		9054377425BD036F00057930 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		9054378025BD06A500057930 /* URLOpenableProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLOpenableProtocols.swift; sourceTree = "<group>"; };
 		9054379425BD104E00057930 /* EmployeeCollectionViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeCollectionViewController+Extension.swift"; sourceTree = "<group>"; };
+		9054379925BD11DE00057930 /* URLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				9054377425BD036F00057930 /* String+Extension.swift */,
+				9054379925BD11DE00057930 /* URLManager.swift */,
 				9054379425BD104E00057930 /* EmployeeCollectionViewController+Extension.swift */,
 				9054378025BD06A500057930 /* URLOpenableProtocols.swift */,
 			);
@@ -407,6 +410,7 @@
 				905436DB25BCB0E300057930 /* NetworkingProtocols.swift in Sources */,
 				9054378125BD06A500057930 /* URLOpenableProtocols.swift in Sources */,
 				9054379525BD104E00057930 /* EmployeeCollectionViewController+Extension.swift in Sources */,
+				9054379A25BD11DE00057930 /* URLManager.swift in Sources */,
 				905436E425BCB2D700057930 /* NetworkManager.swift in Sources */,
 				905436F225BCB38100057930 /* EmployeesNetworkManager.swift in Sources */,
 				9054369F25BCAFC100057930 /* AppDelegate.swift in Sources */,
