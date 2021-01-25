@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol EmployeesResultable {
+protocol EmployeesResultable: class {
     func reload()
     func presentError(_ message: String)
     func navigateToDetailViewController(with viewModel: EmployeeDetailViewModel)

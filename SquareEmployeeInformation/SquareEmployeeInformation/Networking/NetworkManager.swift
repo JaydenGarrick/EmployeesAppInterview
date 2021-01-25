@@ -98,29 +98,27 @@ final class NetworkManager: NetworkRequestRetrievable {
         
         // DataTask
         urlSession.dataTask(with: dataRequest) { [weak self] (data, response, error) in
-            guard let self = self else {
-                completion(.failure(.unknownError(message: "Unable to retain self")))
-                return
-            }
-            
             if let error = error {
-                self.logger.logEvent("Error: \(error.localizedDescription)")
+                self?.logger.logEvent("Error: \(error.localizedDescription)")
                 completion(.failure(.unknownError(message: error.localizedDescription)))
                 return
             }
             
             guard let data = data else {
-                self.logger.logEvent("Error retrieving data")
+                self?.logger.logEvent("Error retrieving data")
                 completion(.failure(.missingData))
                 return
             }
-            
             do {
-                let returnValue = try self.jsonDecoder.decode(ReturnType.self, from: data)
+                guard let returnValue = try self?.jsonDecoder.decode(ReturnType.self, from: data) else {
+                    self?.logger.logEvent("Unable to retain 'self' in \(#function)")
+                    completion(.failure(.unknownError(message: "Unable to retain self")))
+                    return
+                }
                 completion(.success(returnValue))
             } catch(let error) {
-                self.logger.logEvent("Unknown error: \(error.localizedDescription)")
-                completion(.failure(.unknownError(message: error.localizedDescription)))
+                self?.logger.logEvent("Unknown error: \(error.localizedDescription)")
+                completion(.failure(.unableToDecode))
                 return
             }
         }.resume()
