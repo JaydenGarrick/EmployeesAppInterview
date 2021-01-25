@@ -49,7 +49,7 @@ final class EmployeePresenter {
     func cellForRowAt(_ indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath) as? EmployeeCollectionViewCell else {
             view.presentError("Unable to load cells")
-            logger.logEvent("⚠️ Unable to load cells inside \(#function)")
+            logger.logEvent("⚠️ Unable to dequeue EmployeeCollectionViewCell")
             return UICollectionViewCell()
         }
         let employee = employees[indexPath.row]

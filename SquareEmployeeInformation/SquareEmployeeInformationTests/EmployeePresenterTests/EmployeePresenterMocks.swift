@@ -110,13 +110,16 @@ extension EmployeePresenterTests {
     // MARK: - MockCollectionView
     class MockCollectionView: Dequeuable {
         var frame: CGRect
+        var shouldReturnGenericCell: Bool = false
         
         init(_ frame: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)) {
             self.frame = frame
         }
         
         func dequeueReusableCell(withReuseIdentifier identifier: String, for indexPath: IndexPath) -> UICollectionViewCell {
-            return EmployeeCollectionViewCell.instanceFromNib()
+            return shouldReturnGenericCell ?
+                UICollectionViewCell() :
+                EmployeeCollectionViewCell.instanceFromNib()
         }
         
         func dequeueReusableSupplementaryView(ofKind elementKind: String, withReuseIdentifier identifier: String, for indexPath: IndexPath) -> UICollectionReusableView {
@@ -133,6 +136,7 @@ extension EmployeePresenterTests {
 
 // Helper method
 extension EmployeeCollectionViewCell {
+    // Stuff like this is why I typically prefer doing programatic UI 🤪
     static func instanceFromNib() -> UICollectionViewCell {
         return UINib(nibName: "EmployeeCollectionViewCell", bundle: Bundle(for: EmployeeCollectionViewCell.self)).instantiate(withOwner: nil, options: nil).first as? EmployeeCollectionViewCell ?? UICollectionViewCell()
     }

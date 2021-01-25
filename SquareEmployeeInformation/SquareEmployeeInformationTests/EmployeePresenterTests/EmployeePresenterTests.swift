@@ -95,6 +95,25 @@ class EmployeePresenterTests: XCTestCase {
         XCTAssertEqual(headerSize, .zero)
     }
     
+    func test_cellForRow_cantDequeueCorrectCell() {
+        // Given
+        mockNetworkClient.shouldCompleteWithEmptyEmployees = false
+        mockNetworkClient.shouldHaveMalformedData = false
+        mockNetworkClient.completeWithError = false
+        mockCollectionView.shouldReturnGenericCell = true
+        
+        // When
+        sut.fetchEmployees()
+        let _ = sut.cellForRowAt(IndexPath(row: 0, section: 0))
+        
+        // Then
+        let expectedLog = "⚠️ Unable to dequeue EmployeeCollectionViewCell"
+        let expectedErrorPresented = "Unable to load cells"
+        
+        XCTAssertTrue(mockLogger.eventLogged[expectedLog, default: false])
+        XCTAssertTrue(mockView.errorsPresented[expectedErrorPresented, default: false])
+    }
+    
     // MARK: - Employee Fetching
     func test_fetchSuccess_numberOfResults() {
         // Given
