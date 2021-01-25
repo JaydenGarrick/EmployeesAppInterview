@@ -16,7 +16,7 @@ class EmployeePresenterTests: XCTestCase {
     var mockImageFetchable: MockImageManager!
     var mockLogger: MockLogger!
     var mockURLHandler: MockURLHandler!
-    var collectionView: UICollectionView!
+    var mockCollectionView: MockCollectionView!
     
     // System Under Test
     var sut: EmployeePresenter!
@@ -28,10 +28,11 @@ class EmployeePresenterTests: XCTestCase {
         mockImageFetchable = MockImageManager()
         mockLogger = MockLogger()
         mockURLHandler = MockURLHandler()
-        collectionView = MockCollectionView().collectionView
+        mockCollectionView = MockCollectionView()
         
         sut = EmployeePresenter(
             mockView,
+            collectionView: mockCollectionView,
             networkManager: mockNetworkClient,
             logger: mockLogger,
             imageManager: mockImageFetchable,
@@ -45,7 +46,7 @@ class EmployeePresenterTests: XCTestCase {
         mockImageFetchable = nil
         mockLogger = nil
         mockURLHandler = nil
-        collectionView = nil
+        mockCollectionView = nil
         
         sut = nil
     }
@@ -59,7 +60,7 @@ class EmployeePresenterTests: XCTestCase {
         
         // When
         sut.fetchEmployees()
-        sut.didSelectItem(at: IndexPath(item: 0, section: 0), inside: collectionView)
+        sut.didSelectItem(at: IndexPath(item: 0, section: 0))
         
         // Then
         let firstEmployee = sut.employees.first
@@ -75,8 +76,8 @@ class EmployeePresenterTests: XCTestCase {
         sut.fetchEmployees()
         
         // Then
-        let headerSize = sut.headerSizeFor(collectionView)
-        let expectedSize = CGSize(width: collectionView.frame.width, height: 300)
+        let headerSize = sut.headerSize()
+        let expectedSize = CGSize(width: mockCollectionView.frame.width, height: 300)
         XCTAssertEqual(headerSize, expectedSize)
     }
     
@@ -90,7 +91,7 @@ class EmployeePresenterTests: XCTestCase {
         sut.fetchEmployees()
         
         // Then
-        let headerSize = sut.headerSizeFor(collectionView)
+        let headerSize = sut.headerSize()
         XCTAssertEqual(headerSize, .zero)
     }
     
@@ -162,7 +163,7 @@ class EmployeePresenterTests: XCTestCase {
         
         // When
         sut.fetchEmployees()
-        let _ = sut.cellForRowAt(IndexPath(item: 0, section: 0), inside: collectionView)
+        let _ = sut.cellForRowAt(IndexPath(item: 0, section: 0))
         
         // Then
         let expectedLog = "⚠️ Unable to fetch image for \(mockNetworkClient.firstEmployee?.smallPhotoURL ?? "No Image")\nError: \(ImageError.unknownError("Forced Failure").localizedDescription)"
@@ -178,7 +179,7 @@ class EmployeePresenterTests: XCTestCase {
         
         // When
         sut.fetchEmployees()
-        let _ = sut.cellForRowAt(IndexPath(item: 0, section: 0), inside: collectionView)
+        let _ = sut.cellForRowAt(IndexPath(item: 0, section: 0))
         
         // Then
         let expectedLog = "✅ Successfully fetched image at \(mockNetworkClient.firstEmployee?.smallPhotoURL ?? "")"
@@ -195,7 +196,7 @@ class EmployeePresenterTests: XCTestCase {
         // When
         sut.fetchEmployees()
         // Get the second employee who in the JSON has `photo_url_small" : null`
-        let _ = sut.cellForRowAt(IndexPath(item: 1, section: 0), inside: collectionView)
+        let _ = sut.cellForRowAt(IndexPath(item: 1, section: 0))
         
         // Then
         let expectedLog = "Small image URL is null"

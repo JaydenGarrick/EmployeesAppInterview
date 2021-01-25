@@ -47,7 +47,7 @@ final class EmployeesCollectionViewController: UICollectionViewController {
         #endif
         
         // Presenter
-        presenter = EmployeePresenter(self)
+        presenter = EmployeePresenter(self, collectionView: collectionView)
         presenter.fetchEmployees()
     }
     
@@ -58,11 +58,11 @@ extension EmployeesCollectionViewController: UICollectionViewDelegateFlowLayout
  {
     // HEADER
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return presenter.headerSizeFor(collectionView)
+        return presenter.headerSize()
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        return presenter.headerFor(collectionView, indexPath: indexPath)
+        return presenter.headerFor(indexPath: indexPath)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -70,7 +70,7 @@ extension EmployeesCollectionViewController: UICollectionViewDelegateFlowLayout
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return presenter.cellForRowAt(indexPath, inside: collectionView)
+        return presenter.cellForRowAt(indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -78,7 +78,7 @@ extension EmployeesCollectionViewController: UICollectionViewDelegateFlowLayout
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter.didSelectItem(at: indexPath, inside: collectionView)
+        presenter.didSelectItem(at: indexPath)
     }
     
 }

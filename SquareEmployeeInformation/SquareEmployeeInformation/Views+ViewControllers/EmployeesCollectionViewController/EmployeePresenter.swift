@@ -16,6 +16,7 @@ final class EmployeePresenter {
     let logger: Loggable
     let imageManager: ImageFetchable
     let urlHandler: URLHandlerable
+    let collectionView: Dequeuable
     
     // Source of Truth
     var employees: [Employee] = []
@@ -30,12 +31,14 @@ final class EmployeePresenter {
     // MARK: - Initialization
     init(
         _ view: EmployeesResultable,
+        collectionView: Dequeuable,
         networkManager: EmployeesFetchable = EmployeesNetworkManager(),
         logger: Loggable = Logger(),
         imageManager: ImageFetchable = ImageManager(),
         urlHandler: URLHandlerable = UIApplication.shared
     ) {
         self.view = view
+        self.collectionView = collectionView
         self.networkManager = networkManager
         self.logger = logger
         self.imageManager = imageManager
@@ -43,8 +46,7 @@ final class EmployeePresenter {
     }
     
     // MARK: - CollectionView Decorations
-    func cellForRowAt(_ indexPath: IndexPath,
-                      inside collectionView: UICollectionView) -> UICollectionViewCell {
+    func cellForRowAt(_ indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath) as? EmployeeCollectionViewCell else {
             view.presentError("Unable to load cells")
             logger.logEvent("⚠️ Unable to load cells inside \(#function)")
@@ -77,12 +79,12 @@ final class EmployeePresenter {
         return CGSize(width: collectionView.frame.width, height: 115)
     }
     
-    func headerFor(_ collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionReusableView {
+    func headerFor(indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: EmployeesCollectionViewController.Constants.headerIdentifier, for: indexPath)
         return headerView
     }
     
-    func headerSizeFor(_ collectionView: UICollectionView) -> CGSize {
+    func headerSize() -> CGSize {
         if employees.isEmpty {
             logger.logEvent("Headerview is showing")
             return CGSize(width: collectionView.frame.width, height: 300)
@@ -93,8 +95,7 @@ final class EmployeePresenter {
     }
     
     // MARK: - Actions
-    func didSelectItem(at indexPath: IndexPath,
-                       inside collectionView: UICollectionView) {
+    func didSelectItem(at indexPath: IndexPath) {
         var image = UIImage(systemName: "photo.fill")!
         if let cell = collectionView.cellForItem(at: indexPath) as? EmployeeCollectionViewCell {
             image = cell.employeeImageView.image ?? UIImage(systemName: "photo.fill")!

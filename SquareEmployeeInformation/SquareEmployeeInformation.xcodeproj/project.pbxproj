@@ -36,6 +36,7 @@
 		90ADC0C125BE3A6E002B2500 /* EmployeePresenterMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ADC0C025BE3A6E002B2500 /* EmployeePresenterMocks.swift */; };
 		90ADC0CD25BE3CDF002B2500 /* SuccessfulEmployeesReturn.json in Resources */ = {isa = PBXBuildFile; fileRef = 90ADC0CC25BE3CDF002B2500 /* SuccessfulEmployeesReturn.json */; };
 		90ADC0D225BE3F5D002B2500 /* MalformedData.json in Resources */ = {isa = PBXBuildFile; fileRef = 90ADC0D125BE3F5D002B2500 /* MalformedData.json */; };
+		90ADC0E125BF3A81002B2500 /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ADC0E025BF3A81002B2500 /* Dequeueable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		90ADC0C025BE3A6E002B2500 /* EmployeePresenterMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeePresenterMocks.swift; sourceTree = "<group>"; };
 		90ADC0CC25BE3CDF002B2500 /* SuccessfulEmployeesReturn.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SuccessfulEmployeesReturn.json; sourceTree = "<group>"; };
 		90ADC0D125BE3F5D002B2500 /* MalformedData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MalformedData.json; sourceTree = "<group>"; };
+		90ADC0E025BF3A81002B2500 /* Dequeueable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				9054377425BD036F00057930 /* String+Extension.swift */,
+				90ADC0E025BF3A81002B2500 /* Dequeueable.swift */,
 				9054379925BD11DE00057930 /* URLManager.swift */,
 				9054379425BD104E00057930 /* EmployeeCollectionViewController+Extension.swift */,
 				9054378025BD06A500057930 /* URLOpenableProtocols.swift */,
@@ -436,6 +439,7 @@
 				905436E425BCB2D700057930 /* NetworkManager.swift in Sources */,
 				905436F225BCB38100057930 /* EmployeesNetworkManager.swift in Sources */,
 				9054369F25BCAFC100057930 /* AppDelegate.swift in Sources */,
+				90ADC0E125BF3A81002B2500 /* Dequeueable.swift in Sources */,
 				9054374025BCEB9200057930 /* EmployeeCollectionViewHeader.swift in Sources */,
 				9054372925BCD99D00057930 /* ImageManager.swift in Sources */,
 				905436A125BCAFC100057930 /* SceneDelegate.swift in Sources */,

@@ -85,6 +85,7 @@ extension EmployeePresenterTests {
         }
     }
     
+    // MARK: - MockLogger
     class MockLogger: Loggable {
         var eventLogged: [String: Bool] = [:]
         
@@ -93,6 +94,7 @@ extension EmployeePresenterTests {
         }
     }
     
+    // MARK: - MockURLHandler
     class MockURLHandler: URLHandlerable {
         var canOpen: Bool = true
         var urlOpened: Bool = false
@@ -105,21 +107,33 @@ extension EmployeePresenterTests {
         }
     }
     
-    class MockCollectionView {
-        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), collectionViewLayout: UICollectionViewLayout())
+    // MARK: - MockCollectionView
+    class MockCollectionView: Dequeuable {
+        var frame: CGRect
         
-        enum Constants {
-            static let cellIdentifier = "EmployeeCollectionViewCellIdentifier"
-            static let cellName = "EmployeeCollectionViewCell"
-            static let headerName = "EmployeeCollectionViewHeader"
-            static let headerIdentifier = "EmployeeCollectionViewHeaderIdentifier"
+        init(_ frame: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)) {
+            self.frame = frame
         }
         
-        init() {
-            collectionView.register(UINib(nibName: Constants.cellName, bundle: nil), forCellWithReuseIdentifier: Constants.cellIdentifier)
-            collectionView.register(UINib(nibName: Constants.headerName, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Constants.headerIdentifier)
+        func dequeueReusableCell(withReuseIdentifier identifier: String, for indexPath: IndexPath) -> UICollectionViewCell {
+            return EmployeeCollectionViewCell.instanceFromNib()
+        }
+        
+        func dequeueReusableSupplementaryView(ofKind elementKind: String, withReuseIdentifier identifier: String, for indexPath: IndexPath) -> UICollectionReusableView {
+            return UICollectionReusableView()
+        }
+        
+        func cellForItem(at indexPath: IndexPath) -> UICollectionViewCell? {
+            return EmployeeCollectionViewCell.instanceFromNib()
         }
         
     }
     
+}
+
+// Helper method
+extension EmployeeCollectionViewCell {
+    static func instanceFromNib() -> UICollectionViewCell {
+        return UINib(nibName: "EmployeeCollectionViewCell", bundle: Bundle(for: EmployeeCollectionViewCell.self)).instantiate(withOwner: nil, options: nil).first as? EmployeeCollectionViewCell ?? UICollectionViewCell()
+    }
 }
