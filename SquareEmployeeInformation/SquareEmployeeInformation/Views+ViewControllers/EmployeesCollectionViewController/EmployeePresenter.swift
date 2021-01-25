@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Constants = EmployeesCollectionViewController.Constants
+
 final class EmployeePresenter {
     
     // Dependencies
@@ -43,8 +45,7 @@ final class EmployeePresenter {
     // MARK: - CollectionView Decorations
     func cellForRowAt(_ indexPath: IndexPath,
                       inside collectionView: UICollectionView) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmployeesCollectionViewController.Constants.cellIdentifier,
-                                                            for: indexPath) as? EmployeeCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath) as? EmployeeCollectionViewCell else {
             view.presentError("Unable to load cells")
             logger.logEvent("⚠️ Unable to load cells inside \(#function)")
             return UICollectionViewCell()
