@@ -119,7 +119,6 @@ final class EmployeePresenter {
     }
     
     func fetchEmployees() {
-        employees = []
         networkManager.fetchEmployees { [weak self] (result) in
             switch result {
             case .success(let employees):
@@ -127,11 +126,10 @@ final class EmployeePresenter {
                 self?.logger.logEvent("Successfully fetched employees")
                 if employees.isEmpty {
                     self?.view.presentError("Employees came back empty...")
-                    self?.view.reload()
-                } else {
-                    self?.view.reload()
                 }
+                self?.view.reload()
             case .failure(let error):
+                self?.employees.removeAll()
                 self?.view.presentError("Error Retrieving Employees: \(error.localizedDescription)")
                 self?.logger.logEvent("Error Retrieving Employees: \(error.localizedDescription)")
                 self?.view.reload()
