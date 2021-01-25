@@ -21,8 +21,9 @@ final class EmployeePresenter {
     // Source of Truth
     var employees: [Employee] = []
     
-    // View
+    // View and Navigation
     weak var view: EmployeesResultable?
+    weak var navigator: EmployeeInformationNavigator?
     
     var numberOfItemsInSection: Int {
         return employees.count
@@ -48,7 +49,7 @@ final class EmployeePresenter {
     // MARK: - CollectionView Decorations
     func cellForRowAt(_ indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath) as? EmployeeCollectionViewCell else {
-            view?.presentError("Unable to load cells")
+            navigator?.presentError("Unable to load cells")
             logger.logEvent("⚠️ Unable to dequeue EmployeeCollectionViewCell")
             return UICollectionViewCell()
         }
@@ -103,7 +104,7 @@ final class EmployeePresenter {
         
         let employee = employees[indexPath.row]
         let viewModel = EmployeeDetailViewModel(employee: employee, lowResImage: image)
-        view?.navigateToDetailViewController(with: viewModel)
+        navigator?.goToDetailViewWith(viewModel)
     }
     
     func resetEndpointTo(_ type: URLManager.URLResponseType) {
@@ -127,12 +128,12 @@ final class EmployeePresenter {
                 self?.employees = employees
                 self?.logger.logEvent("Successfully fetched employees")
                 if employees.isEmpty {
-                    self?.view?.presentError("Employees came back empty...")
+                    self?.navigator?.presentError("Employees came back empty...")
                 }
                 self?.view?.reload()
             case .failure(let error):
                 self?.employees.removeAll()
-                self?.view?.presentError("Error Retrieving Employees: \(error.localizedDescription)")
+                self?.navigator?.presentError("Error Retrieving Employees: \(error.localizedDescription)")
                 self?.logger.logEvent("Error Retrieving Employees: \(error.localizedDescription)")
                 self?.view?.reload()
             }
@@ -148,7 +149,7 @@ extension EmployeePresenter: EmployeeCollectionViewCellDelegate {
         if let url = URL(string: "mailto://\(email)"), urlHandler.canOpenURL(url) {
             urlHandler.open(url)
         } else {
-            view?.presentError("Can't send email to \(email) on this device")
+            navigator?.presentError("Can't send email to \(email) on this device")
         }
     }
     
@@ -161,7 +162,7 @@ extension EmployeePresenter: EmployeeCollectionViewCellDelegate {
         if let url = URL(string: "tel://\(number)"), urlHandler.canOpenURL(url) {
             urlHandler.open(url)
         } else {
-            view?.presentError("Can't make call to \(number) on this device")
+            navigator?.presentError("Can't make call to \(number) on this device")
         }
     }
 }

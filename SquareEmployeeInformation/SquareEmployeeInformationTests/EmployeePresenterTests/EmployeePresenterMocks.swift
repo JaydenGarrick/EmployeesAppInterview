@@ -12,20 +12,24 @@ import XCTest
 extension EmployeePresenterTests {
     // MARK: - MockView
     class MockView: EmployeesResultable {
-        var viewModel: EmployeeDetailViewModel? = nil
-        var errorsPresented: [String: Bool] = [:]
         var reloaded: Bool = false
         
         func reload() {
             reloaded = true
         }
+    }
+    
+    // MARK: - MockNavigator
+    class MockNavigator: EmployeeInformationNavigator {
+        var viewModel: EmployeeDetailViewModel? = nil
+        var errorsPresented: [String: Bool] = [:]
+        
+        func goToDetailViewWith(_ viewModel: EmployeeDetailViewModel) {
+            self.viewModel = viewModel
+        }
         
         func presentError(_ message: String) {
             errorsPresented[message] = true
-        }
-        
-        func navigateToDetailViewController(with viewModel: EmployeeDetailViewModel) {
-            self.viewModel = viewModel
         }
     }
     

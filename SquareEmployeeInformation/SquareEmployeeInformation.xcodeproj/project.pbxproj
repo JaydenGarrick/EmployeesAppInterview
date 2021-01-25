@@ -37,6 +37,9 @@
 		90ADC0CD25BE3CDF002B2500 /* SuccessfulEmployeesReturn.json in Resources */ = {isa = PBXBuildFile; fileRef = 90ADC0CC25BE3CDF002B2500 /* SuccessfulEmployeesReturn.json */; };
 		90ADC0D225BE3F5D002B2500 /* MalformedData.json in Resources */ = {isa = PBXBuildFile; fileRef = 90ADC0D125BE3F5D002B2500 /* MalformedData.json */; };
 		90ADC0E125BF3A81002B2500 /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ADC0E025BF3A81002B2500 /* Dequeueable.swift */; };
+		90ADC0E825BF553C002B2500 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ADC0E725BF553C002B2500 /* Coordinator.swift */; };
+		90ADC0F825BF55C5002B2500 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ADC0F725BF55C5002B2500 /* AppCoordinator.swift */; };
+		90ADC0FD25BF567B002B2500 /* EmployeeInformationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ADC0FC25BF567B002B2500 /* EmployeeInformationCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +96,9 @@
 		90ADC0CC25BE3CDF002B2500 /* SuccessfulEmployeesReturn.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SuccessfulEmployeesReturn.json; sourceTree = "<group>"; };
 		90ADC0D125BE3F5D002B2500 /* MalformedData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MalformedData.json; sourceTree = "<group>"; };
 		90ADC0E025BF3A81002B2500 /* Dequeueable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
+		90ADC0E725BF553C002B2500 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		90ADC0F725BF55C5002B2500 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		90ADC0FC25BF567B002B2500 /* EmployeeInformationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeInformationCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +179,7 @@
 		905436D325BCB07A00057930 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				90ADC0F025BF5553002B2500 /* Coordinator */,
 				9054377C25BD037A00057930 /* Helpers */,
 				905436ED25BCB30300057930 /* Logging */,
 				9054369E25BCAFC100057930 /* AppDelegate.swift */,
@@ -227,6 +234,7 @@
 			children = (
 				905436A225BCAFC100057930 /* EmployeesCollectionViewController.swift */,
 				9054371325BCC99700057930 /* EmployeePresenter.swift */,
+				90ADC0FC25BF567B002B2500 /* EmployeeInformationCoordinator.swift */,
 			);
 			path = EmployeesCollectionViewController;
 			sourceTree = "<group>";
@@ -288,6 +296,15 @@
 				90ADC0D125BE3F5D002B2500 /* MalformedData.json */,
 			);
 			path = EmployeePresenterTests;
+			sourceTree = "<group>";
+		};
+		90ADC0F025BF5553002B2500 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				90ADC0E725BF553C002B2500 /* Coordinator.swift */,
+				90ADC0F725BF55C5002B2500 /* AppCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,12 +447,14 @@
 				905436A325BCAFC100057930 /* EmployeesCollectionViewController.swift in Sources */,
 				905436F725BCB4A700057930 /* Employee.swift in Sources */,
 				905436E925BCB2FE00057930 /* Logging.swift in Sources */,
+				90ADC0F825BF55C5002B2500 /* AppCoordinator.swift in Sources */,
 				9054375825BCF67400057930 /* EmployeeDetailViewController.swift in Sources */,
 				9054371425BCC99700057930 /* EmployeePresenter.swift in Sources */,
 				905436DB25BCB0E300057930 /* NetworkingProtocols.swift in Sources */,
 				9054378125BD06A500057930 /* URLOpenableProtocols.swift in Sources */,
 				9054379525BD104E00057930 /* EmployeeCollectionViewController+Extension.swift in Sources */,
 				9054379A25BD11DE00057930 /* URLManager.swift in Sources */,
+				90ADC0E825BF553C002B2500 /* Coordinator.swift in Sources */,
 				905436E425BCB2D700057930 /* NetworkManager.swift in Sources */,
 				905436F225BCB38100057930 /* EmployeesNetworkManager.swift in Sources */,
 				9054369F25BCAFC100057930 /* AppDelegate.swift in Sources */,
@@ -443,6 +462,7 @@
 				9054374025BCEB9200057930 /* EmployeeCollectionViewHeader.swift in Sources */,
 				9054372925BCD99D00057930 /* ImageManager.swift in Sources */,
 				905436A125BCAFC100057930 /* SceneDelegate.swift in Sources */,
+				90ADC0FD25BF567B002B2500 /* EmployeeInformationCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

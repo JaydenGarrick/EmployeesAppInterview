@@ -9,8 +9,6 @@ import UIKit
 
 protocol EmployeesResultable: class {
     func reload()
-    func presentError(_ message: String)
-    func navigateToDetailViewController(with viewModel: EmployeeDetailViewModel)
 }
 
 final class EmployeesCollectionViewController: UICollectionViewController {
@@ -88,33 +86,5 @@ extension EmployeesCollectionViewController: EmployeesResultable {
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
         }
-    }
-    
-    func presentError(_ message: String) {
-        let alertController = UIAlertController(title: "Please try again...", message: message, preferredStyle: .alert)
-        let retryAction = UIAlertAction(title: "Retry", style: .default) { [weak self] (_) in
-            self?.presenter.fetchEmployees()
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alertController.addAction(retryAction)
-        alertController.addAction(cancelAction)
-        DispatchQueue.main.async { [weak self] in
-            self?.present(alertController, animated: true)
-        }
-    }
-    
-    func navigateToDetailViewController(with viewModel: EmployeeDetailViewModel) {
-        /*
-        Ideally I wouldn't be using storyboards, but to save time I'm doing it here.
-        I could use storyboard segue's, however I don't like that pattern so I'm
-        instantiating the VC here
-        */
-        guard let detailViewController = UIStoryboard(name: "Main", bundle: nil)
-                .instantiateViewController(identifier: Constants.detailViewController)
-                as? EmployeeDetailViewController else {
-            fatalError("Unable to retrieve Detail ViewController from Main.storyboard")
-        }
-        detailViewController.viewModel = viewModel
-        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

@@ -17,6 +17,7 @@ class EmployeePresenterTests: XCTestCase {
     var mockLogger: MockLogger!
     var mockURLHandler: MockURLHandler!
     var mockCollectionView: MockCollectionView!
+    var mockNavigator: MockNavigator!
     
     // System Under Test
     var sut: EmployeePresenter!
@@ -29,6 +30,7 @@ class EmployeePresenterTests: XCTestCase {
         mockLogger = MockLogger()
         mockURLHandler = MockURLHandler()
         mockCollectionView = MockCollectionView()
+        mockNavigator = MockNavigator()
         
         sut = EmployeePresenter(
             mockView,
@@ -38,6 +40,7 @@ class EmployeePresenterTests: XCTestCase {
             imageManager: mockImageFetchable,
             urlHandler: mockURLHandler
         )
+        sut.navigator = mockNavigator
     }
     
     override func tearDown() {
@@ -47,6 +50,7 @@ class EmployeePresenterTests: XCTestCase {
         mockLogger = nil
         mockURLHandler = nil
         mockCollectionView = nil
+        mockNavigator = nil
         
         sut = nil
     }
@@ -65,7 +69,7 @@ class EmployeePresenterTests: XCTestCase {
         // Then
         let firstEmployee = sut.employees.first
         XCTAssertNotNil(mockNetworkClient.firstEmployee)
-        XCTAssertEqual(mockView.viewModel?.employee, firstEmployee)
+        XCTAssertEqual(mockNavigator.viewModel?.employee, firstEmployee)
     }
     
     func test_emptyState_shouldShowHeader() {
@@ -111,7 +115,7 @@ class EmployeePresenterTests: XCTestCase {
         let expectedErrorPresented = "Unable to load cells"
         
         XCTAssertTrue(mockLogger.eventLogged[expectedLog, default: false])
-        XCTAssertTrue(mockView.errorsPresented[expectedErrorPresented, default: false])
+        XCTAssertTrue(mockNavigator.errorsPresented[expectedErrorPresented, default: false])
     }
     
     // MARK: - Employee Fetching
@@ -156,7 +160,7 @@ class EmployeePresenterTests: XCTestCase {
         // Then
         let expectedErrorMessage = "Error Retrieving Employees: \(EmployeesNetworkError.unknownError("Forced Failure").localizedDescription)"
         XCTAssertTrue(mockLogger.eventLogged[expectedErrorMessage, default: false])
-        XCTAssertTrue(mockView.errorsPresented[expectedErrorMessage, default: false])
+        XCTAssertTrue(mockNavigator.errorsPresented[expectedErrorMessage, default: false])
     }
     
     func test_fetchCameBackEmpty_errorPresented() {
@@ -168,7 +172,7 @@ class EmployeePresenterTests: XCTestCase {
         
         // Then
         let expectedErrorMessage = "Employees came back empty..."
-        XCTAssertTrue(mockView.errorsPresented[expectedErrorMessage, default: false])
+        XCTAssertTrue(mockNavigator.errorsPresented[expectedErrorMessage, default: false])
         XCTAssertTrue(sut.employees.isEmpty)
     }
     
@@ -260,7 +264,7 @@ class EmployeePresenterTests: XCTestCase {
         
         // Then
         let expectedMessage = "Can't make call to \("") on this device"
-        XCTAssertTrue(mockView.errorsPresented[expectedMessage, default: false])
+        XCTAssertTrue(mockNavigator.errorsPresented[expectedMessage, default: false])
     }
     
     // Email
@@ -286,7 +290,7 @@ class EmployeePresenterTests: XCTestCase {
         
         // Then
         let expectedMessage = "Can't send email to \("") on this device"
-        XCTAssertTrue(mockView.errorsPresented[expectedMessage, default: false])
+        XCTAssertTrue(mockNavigator.errorsPresented[expectedMessage, default: false])
     }
     
     // MARK: - URL Switcher
