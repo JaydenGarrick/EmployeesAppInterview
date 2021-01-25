@@ -14,4 +14,4 @@ The approach I took was MVP with POP (Protocol Oriented Programming) + Coordinat
 ## If I Had More Time
 * I wanted to add unit tests to the networking client + image stuff, unfortunately I ran out of time, and I hope my presenter tests show my unit test competency
 * The detail view controller could probably be cleaned up a bit - I was running out of time to work on this so I kind of quickly whipped it together. 
-* I'd want to fix up the UX a bit - add some kind of indicator to the "searching" header when the callback comes back empty or with an error
+* I'd want to fix up the UX a bit - add some kind of indicator to the "searching" header when the callback comes back empty or with an error.
