@@ -13,13 +13,14 @@ typealias EmployeesBackendResponse = (Result<[Employee], EmployeesNetworkError>)
 enum EmployeesNetworkError: Error {
     case badURL
     case networkError(NetworkError)
+    case unknownError(String)
 }
 
 protocol EmployeesFetchable {
     func fetchEmployees(completion: @escaping EmployeesBackendResponse)
 }
 
-class EmployeesNetworkManager: EmployeesFetchable {
+final class EmployeesNetworkManager: EmployeesFetchable {
         
     var networkClient: NetworkRequestRetrievable
     var logger: Loggable

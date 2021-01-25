@@ -16,7 +16,7 @@ struct EmployeeDetailViewModel {
     let lowResImage: UIImage
 }
 
-class EmployeeDetailViewController: UIViewController {
+final class EmployeeDetailViewController: UIViewController {
     
     // MARK: - Properties
     // Presenter

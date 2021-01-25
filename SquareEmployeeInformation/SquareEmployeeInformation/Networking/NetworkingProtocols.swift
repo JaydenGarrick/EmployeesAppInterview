@@ -28,10 +28,10 @@ protocol NetworkRequestRetrievable {
     
     /// JSONRequest with no Headers
     /// - Parameters:
-    ///   - url: url description
-    ///   - type: type description
-    ///   - httpMethod: httpMethod description
-    ///   - completion: completion description
+    ///   - url: The URL you are using for your endpoint
+    ///   - type: The type you are trying to decode from the endpoint. Must conform to Decodable
+    ///   - httpMethod: The HTTP method used
+    ///   - completion: Completes with either your return type (type) or a NetworkError inside a `Result` type
     func jsonRequest<ReturnType: Decodable>(url: URL,
                                  type: ReturnType.Type,
                                  httpMethod: HTTPMethod,

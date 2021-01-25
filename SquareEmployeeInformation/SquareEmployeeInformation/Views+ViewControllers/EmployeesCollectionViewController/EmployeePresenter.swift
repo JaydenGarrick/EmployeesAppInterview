@@ -56,15 +56,17 @@ final class EmployeePresenter {
             imageManager.fetchImage(with: imageURL) { [weak self] (result) in
                 switch result {
                 case .success(let image):
+                    self?.logger.logEvent("✅ Successfully fetched image at \(employee.smallPhotoURL ?? "")")
                     cell.setImage(image)
                 case .failure(let error):
-                    self?.logger.logEvent("🖼 Unable to fetch image for \(employee.smallPhotoURL ?? "No Image")\nError: \(error.localizedDescription)")
+                    self?.logger.logEvent("⚠️ Unable to fetch image for \(employee.smallPhotoURL ?? "No Image")\nError: \(error.localizedDescription)")
                     cell.setImage(UIImage(systemName: "photo.fill")!)
                 }
             }
         } else {
-            // Typically I wouldn't force unwrap here, 
+            // Typically I wouldn't force unwrap here,
             cell.setImage(UIImage(systemName: "photo.fill")!)
+            logger.logEvent("Small image URL is null")
         }
         cell.delegate = self
         return cell
@@ -122,6 +124,7 @@ final class EmployeePresenter {
             switch result {
             case .success(let employees):
                 self?.employees = employees
+                self?.logger.logEvent("Successfully fetched employees")
                 if employees.isEmpty {
                     self?.view.presentError("Employees came back empty...")
                     self?.view.reload()
@@ -130,6 +133,7 @@ final class EmployeePresenter {
                 }
             case .failure(let error):
                 self?.view.presentError("Error Retrieving Employees: \(error.localizedDescription)")
+                self?.logger.logEvent("Error Retrieving Employees: \(error.localizedDescription)")
                 self?.view.reload()
             }
         }

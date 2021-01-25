@@ -11,7 +11,7 @@ struct EmployeeTopLevelJSON: Codable {
     let employees: [Employee]
 }
 
-enum EmployeeType: String, Codable {
+enum EmployeeType: String, Codable, Equatable {
     case fullTime
     case partTime
     case contractor
@@ -31,7 +31,7 @@ enum EmployeeType: String, Codable {
     }
 }
 
-struct Employee: Codable {
+struct Employee: Codable, Equatable {
     let uuid: UUID
     let fullName: String
     let phoneNumber: String?
@@ -54,7 +54,7 @@ struct Employee: Codable {
         case employeeType = "employee_type"
     }
     
-    init(from decoder: Decoder) throws {    
+    init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         uuid = try values.decode(UUID.self, forKey: .uuid)
         fullName = try values.decode(String.self, forKey: .fullName)

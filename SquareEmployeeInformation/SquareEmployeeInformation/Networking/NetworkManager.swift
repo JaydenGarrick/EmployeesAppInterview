@@ -24,7 +24,7 @@ extension JSONDecoder: JSONDecodable {}
 extension JSONEncoder: JSONEncodable {}
 
 
-class NetworkManager: NetworkRequestRetrievable {
+final class NetworkManager: NetworkRequestRetrievable {
     
     // MARK: - Properties
     let urlSession: URLSessionRetrievable
@@ -32,10 +32,12 @@ class NetworkManager: NetworkRequestRetrievable {
     var jsonDecoder: JSONDecodable
     let jsonEncoder: JSONEncodable
     
-    init(urlSession: URLSessionRetrievable = URLSession.shared,
-                  logger: Loggable = Logger(),
-                  jsonDecoder: JSONDecodable = JSONDecoder(),
-                  jsonEncoder: JSONEncodable = JSONEncoder()) {
+    init(
+        urlSession: URLSessionRetrievable = URLSession.shared,
+        logger: Loggable = Logger(),
+        jsonDecoder: JSONDecodable = JSONDecoder(),
+        jsonEncoder: JSONEncodable = JSONEncoder()
+    ) {
         self.urlSession = urlSession
         self.logger = logger
         self.jsonDecoder = jsonDecoder
@@ -123,6 +125,5 @@ class NetworkManager: NetworkRequestRetrievable {
             }
         }.resume()
     }
-    
     
 }

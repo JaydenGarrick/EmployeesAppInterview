@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EmployeeDetailViewPresenter {
+final class EmployeeDetailViewPresenter {
     // MARK: - Properties
     
     // view

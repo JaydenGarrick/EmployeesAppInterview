@@ -37,7 +37,6 @@ final class EmployeesCollectionViewController: UICollectionViewController {
     private func initialSetup() {
         // CollectionView
         collectionView.register(UINib(nibName: Constants.cellName, bundle: nil), forCellWithReuseIdentifier: Constants.cellIdentifier)
-        
         collectionView.register(UINib(nibName: Constants.headerName, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Constants.headerIdentifier)        
 
         // NavBar
